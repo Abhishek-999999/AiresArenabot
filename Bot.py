@@ -1,3 +1,4 @@
+import os
 import discord
 from discord.ext import commands
 
@@ -18,4 +19,9 @@ async def ping(ctx):
     await ctx.send("🏓 Pong! Aires Arena Bot is working.")
 
 
-bot.run("YOUR_BOT_TOKEN")
+TOKEN = os.getenv("DISCORD_TOKEN")
+
+if not TOKEN:
+    raise ValueError("DISCORD_TOKEN is not set!")
+
+bot.run(TOKEN)
